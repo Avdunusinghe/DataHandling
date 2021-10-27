@@ -15,8 +15,8 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public static String DATABASE_NAME = "userInfo.db";
 
-    public DbHelper(@Nullable Context context, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DATABASE_NAME, factory, version);
+    public DbHelper(@Nullable Context context) {
+        super(context, DATABASE_NAME);
     }
 
     /*public DbHelper( Context context) {
@@ -40,7 +40,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
-    public void addInfo(String userName, String password){
+    public long addInfo(String userName, String password){
 
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -48,6 +48,7 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(UsersMaster.Users.COLUMN_NAME_PASSWORD,password);
 
         long newRoleId = db.insert(UsersMaster.Users.TABLE_NAME,null,values);
+        return newRoleId;
     }
 
     public List readAllInfo(String req){
