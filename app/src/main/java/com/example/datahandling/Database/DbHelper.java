@@ -135,4 +135,24 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return count;
     }
+
+    //image insert
+    /*public void uploadImage(View view)
+        {
+
+        //db=mdb.getWritableDatabase();
+
+		SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("image", img);
+
+        db.insert("tableimage", null, contentValues);
+
+        imageView.setAlpha(0);
+
+        Toast.makeText(this, "inserted successfully", Toast.LENGTH_SHORT).show();
+
+        }*/
 }

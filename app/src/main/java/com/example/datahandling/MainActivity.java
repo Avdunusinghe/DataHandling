@@ -12,10 +12,13 @@ import com.example.datahandling.Database.DbHelper;
 
 import java.util.List;
 
+
+
 public class MainActivity extends AppCompatActivity {
 
     EditText et_username,et_password;
     Button saveBtn;
+    private DbHelper dbHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +27,38 @@ public class MainActivity extends AppCompatActivity {
         et_username = findViewById(R.id.password_et);
         et_password = findViewById(R.id.user_nameet);
         saveBtn = findViewById(R.id.SaveaBtn);
+
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dbHandler = new DbHelper(MainActivity.this);
+
+                List userNames = dbHandler.readAllInfo("username");
+                List passwords = dbHandler.readAllInfo("password");
+
+                String username = et_username.getText().toString().trim();
+                String password = et_password.getText().toString().trim();
+
+                if(userNames.indexOf(username)>=0){
+
+                    if(passwords.get(userNames.indexOf(username)).equals(password)){
+                        Toast.makeText(MainActivity.this,
+                                "Sign in Successfully",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(MainActivity.this,
+                                "Login Failed",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
+
+            }
+        });
+
     }
 
 
@@ -41,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
         else{
-            Toast.makeText(this,"Data Insert Successfully",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"error",Toast.LENGTH_SHORT).show();
         }
     }
     public void updateInfo(View view){
@@ -96,12 +131,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        saveBtn.setOnClickListener(new View.OnClickListener() {
+        /*saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addData(v);
+
+                D
             }
-        });
+
+            }
+        });*/
 
     }
 
