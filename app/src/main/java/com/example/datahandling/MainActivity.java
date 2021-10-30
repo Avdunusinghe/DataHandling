@@ -143,5 +143,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*DBHelper dbhelper = new DBHelper(this);
+SQLiteDatabase db = dbhelper.getWritableDatabase();
+Cursor cursor = db.query(Table,
+    username,
+    isCurrentUser + " = ? ",
+    new String []{"true"},
+    null, null, null);
+cursor.moveToFirst();
+String currentUsername = cursor.getString(cursor.getColumnIndex("username"));*/
+
 
 }
